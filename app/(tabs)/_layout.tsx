@@ -32,6 +32,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="ishapage1"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'person-sharp' : 'person-sharp'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
