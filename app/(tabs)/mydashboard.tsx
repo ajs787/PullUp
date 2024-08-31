@@ -1,12 +1,17 @@
-import { Image, StyleSheet, View, ScrollView, Text, Pressable, Alert } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, View, ScrollView, Text, Pressable, Alert, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useLinkProps } from '@react-navigation/native';
 
-export default function HomeScreen() {
+export default function Dashboard() {
+
+  const navigation = useNavigation();
+  
+
+  const { onPress, href } = useLinkProps({ to: 'Profile' });
+
   const handlePress = () => {
-    Alert.alert('Edit Preferences', 'You pressed the button!');
-  };
-
-  const handlePress2 = () => {
-    Alert.alert('Boost Profile', 'To boost profile, you must be a paid member!');
+    Alert.alert('Connections', 'You will see your connections here.');
   };
 
   return (
@@ -22,17 +27,28 @@ export default function HomeScreen() {
           <Text style={[styles.text, styles.titleText]}>Penelope Kite</Text>
         </View>
         <View style={styles.subtitleContainer}>
-          <Text style={[styles.text, styles.subtitleText]}>My Profile</Text>
-          <Text style={[styles.text, styles.subtitleText]}>My Dashboard</Text>
+
+          <View style={styles.container}>
+            <Text> </Text>
+            <Button title="My Profile" onPress={() => navigation.navigate('Profile')} />
+          </View>
+
+          <View style={styles.container}>
+            <Text> </Text>
+            <Button title="My Dashboard" onPress={onPress} />
+          </View>
+          
         </View>
         <View style={styles.lineContainer}>
           <View style={styles.line} />
+          <View style={styles.line2} />
         </View>
         <Pressable style={styles.button} onPress={handlePress}>
-          <Text style={styles.buttonText}>Edit Preferences 🖊️</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={handlePress2}>
-          <Text style={styles.buttonText}>Boost Profile ★</Text>
+          <View style={styles.squareShape}>
+            <Text style={styles.squareText}>14</Text> 
+            <Text style={styles.squareText2}>Connections</Text> 
+          </View>
+          <Text style={styles.buttonText}> Click to view all {'>'} </Text>
         </Pressable>
       </View>
     </ScrollView>
@@ -70,14 +86,21 @@ const styles = StyleSheet.create({
     marginBottom: 5, // Adjusted to fit the line beneath
   },
   lineContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: 'column', // Stack lines vertically
+    alignItems: 'center',
     marginBottom: 35,
   },
   line: {
-    width: '150%', // Adjust the width of the line as needed
+    width: '120%', // Adjust the width of the line as needed
     height: 1, // Adjust the thickness of the line
     backgroundColor: 'black', // Adjust the color of the line
+    marginBottom: 0, // Add margin to create space between lines
+  },
+  line2: {
+    width: '50%', // Adjust the width of the line as needed
+    height: 4, // Adjust the thickness of the line
+    backgroundColor: 'black', // Adjust the color of the line
+    alignSelf: 'flex-end', // Move the line to the right
   },
   text: {
     color: '#000000', // Set the text color to black
@@ -92,10 +115,12 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#CAE5EB',
-    padding: 45,
+    padding: 30,
     borderRadius: 10,
     alignItems: 'center',
     marginVertical: 20,
+    flexDirection: 'column', // Ensures elements are laid out in a column
+    justifyContent: 'center',
     // Add shadow properties for iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
@@ -106,16 +131,17 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#000000',
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 15,
+    marginTop: 10, // Adds space between the square and the text
   },
-  button2: {
-    backgroundColor: '#CAE5EB',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginVertical: 10,
-    // Add shadow properties for iOS
+  squareShape: {
+    width: 200, // Width of the square
+    height: 170, // Height of the square
+    backgroundColor: '#FAFAFA', // Square color
+    marginBottom: 15,
+    borderRadius: 10,
+    alignItems: 'center', // Center the text horizontally
+    justifyContent: 'center', // Center the text vertically
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.2,
@@ -123,9 +149,16 @@ const styles = StyleSheet.create({
     // Add elevation for Android
     elevation: 4,
   },
-  buttonText2: {
+  squareText: {
     color: '#000000',
-    fontSize: 20,
+    fontSize: 70,
+    fontWeight: 'bold',
+  },
+  squareText2: {
+    color: '#000000',
+    fontSize: 17,
     fontWeight: 'bold',
   },
 });
+
+

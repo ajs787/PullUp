@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/(tabs)/myprofile.tsx", "app/(tabs)/mydashboard.tsx", "app/(tabs)/index.js", "app/(tabs)/settings.tsx", "app/(tabs)/connections.tsx", "app/(tabs)/explore.tsx", "app/(tabs)/_layout.tsx", "app/(tabs)/navigator.js", "app/_layout.tsx", "app/+html.tsx", "app/+not-found.tsx", "components/Collapsible.tsx", "components/ExternalLink.tsx"  ]
 }
