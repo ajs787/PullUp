@@ -43,7 +43,7 @@ export default function Profile() {
 
           <View style={styles.container}>
           <Text> </Text>
-          <Button title="My Dashboard" onPress={() => navigation.navigate("Dashboard")}  />
+          {/* <Button title="My Dashboard" onPress={() => navigation.navigate("Dashboard")}  /> */}
           </View>
 
         </View>
